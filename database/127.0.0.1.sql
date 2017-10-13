@@ -17,11 +17,11 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `gammu`
+-- Database: `parksms`
 --
-DROP DATABASE `gammu`;
-CREATE DATABASE `gammu` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `gammu`;
+DROP DATABASE `parksms`;
+CREATE DATABASE `parksms` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `parksms`;
 
 -- --------------------------------------------------------
 

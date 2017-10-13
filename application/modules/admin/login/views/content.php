@@ -3,7 +3,7 @@
   <head>
     <meta name="robots" content="noindex">
     <meta charset="UTF-8">
-    <title>SIPMOT</title>
+    <title>SIPENJAGATAMAN</title>
     <link rel="stylesheet" href="<?php echo base_url();?>assets/core/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/core/plugin/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/core/css/login.css">
@@ -12,14 +12,14 @@
   <body>
     <div class="navbar navbar-static-top">
     <div class="navbar-inner">
-    <div class="brand"><i class='fa fa-lock'></i> SIPMOT Login</div>
+    <div class="brand"><i class='fa fa-lock'></i> SIPENJAGATAMAN Login</div>
     
     </div>
     </div>
  
 <div class="container">
   <div class='form-container'>
-        <div class="form-signin-heading text-muted"> Sign In to SIPMOT</div>
+        <div class="form-signin-heading text-muted"> Sign In to SIPENJAGATAMAN</div>
 		
 	<form class="form-signin" action="<?php echo base_url();?>login" method="POST" charset="utf-8">
 		<center>

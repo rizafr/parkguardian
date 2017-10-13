@@ -3,7 +3,7 @@
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>
-                Adminpanel
+                SIPENJAGATAMAN
             </title>
             <?php echo $this->load->view('admin/_include');?>
             <?php echo $this->load->view('admin/_js');?>
