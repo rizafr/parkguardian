@@ -413,6 +413,20 @@ class Core_model extends CI_model
             return null;
         }
     }
+    
+    function get_groups()
+    {
+        $db = $this->load->database('gammu',TRUE);
+        $db->select('*');
+        $db->from('pbk_groups');
+        $query = $db->get();
+        if ($query->num_rows() > 0)
+        {
+           return $query->result_array();
+        } else {
+            return null;
+        }
+    }
 
     function exist_user($number)
     {
