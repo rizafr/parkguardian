@@ -6,12 +6,22 @@
 .box {
     position: relative;
     border-radius: 3px;
-    background: #ffffff;
-    border-top: 3px solid #d2d6de;
+    background: #F7F7F7;
     margin-bottom: 20px;
     width: 100%;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     padding: 20px;
+}
+
+.box-left {
+    background-color: #2A3F54 !important;
+    color: #fff;
+    z-index: 9;
+}
+
+.box-left .nav-list>li>a {
+    color: #fff;
+    text-shadow: none;
 }
 
 .navbar-inverse .brand {
@@ -21,13 +31,14 @@
 .navbar-inverse .navbar-inner {
     color: #fff;
     border-color: transparent;
-    background: -moz-linear-gradient(-65deg, #008fe2 0, #00b29c 100%);
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #008fe2), color-stop(100%, #00b29c));
-    background: -webkit-linear-gradient(-65deg, #008fe2 0, #00b29c 100%);
-    background: -o-linear-gradient(-65deg, #008fe2 0, #00b29c 100%);
-    background: -ms-linear-gradient(-65deg, #008fe2 0, #00b29c 100%);
-    background: linear-gradient(154deg, #008fe2 0, #00b29c 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#008fe2', endColorstr='#00b29c', GradientType=1);
+    background: #2A3F54 !important;
+    // background: -moz-linear-gradient(-65deg, #008fe2 0, #00b29c 100%);
+    // background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #008fe2), color-stop(100%, #00b29c));
+    // background: -webkit-linear-gradient(-65deg, #008fe2 0, #00b29c 100%);
+    // background: -o-linear-gradient(-65deg, #008fe2 0, #00b29c 100%);
+    // background: -ms-linear-gradient(-65deg, #008fe2 0, #00b29c 100%);
+    // background: linear-gradient(154deg, #008fe2 0, #00b29c 100%);
+    // filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#008fe2', endColorstr='#00b29c', GradientType=1);
 }
 
 .navbar-inverse .nav>li>a {
@@ -36,13 +47,12 @@
 
 .table > thead > tr > th {
     /* border-bottom-width: 2px; */
-    background: #4C4C4C;
+    background: #2A3F54;
     color: #ECECFB;
 }
 
 .table > tbody {
     /* border-bottom-width: 2px; */
-    background: #283e4a;
     color: #555;
 }
 
@@ -116,5 +126,5 @@ body {
     font-size: 14px;
     line-height: 1.428571429;
     color: #333333;
-    background: #f1f1f1; 
+    background: #EDEDED; 
 }

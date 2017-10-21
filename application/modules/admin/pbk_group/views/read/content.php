@@ -3,7 +3,7 @@
         <?php echo $this->load->view('_layouts/menus');?>
 
         <a href="<?php echo base_url('pbk_group/create');?>" class='btn'><i class='fa fa-pencil'></i>
-            Tambah Grup Telepon
+            Tambah Kategori
         </a>
         <hr>
         <div class="input-prepend input-append">
