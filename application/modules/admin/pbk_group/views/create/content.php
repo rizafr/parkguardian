@@ -13,7 +13,7 @@
 
 			<!-- start Name -->
 			<div class='control-group <?php echo form_error('Name') ? 'error' : ''; ?>'>
-				<label class='control-label' ><strong>Nama Grup</strong></label>
+				<label class='control-label' ><strong>Nama Kategori</strong></label>
 				<div class='controls'>
 					<input type='text' name='Name' value='<?php echo set_value('Name');?>' class='span5' placeholder='Name' required>
 					<?php echo form_error('Name'); ?></div>

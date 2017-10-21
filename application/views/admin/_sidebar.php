@@ -6,13 +6,13 @@
 <?php $phonebook = core::get_all('pbk','gammu');?>
 <?php $group = core::get_all('pbk_groups','gammu');?>
 
- <div class='box'>
+ <div class='box box-left'>
     <ul class="nav nav-list">
     <li class="nav-header">Menu</li>
     <li class="<?php echo $this->uri->segment(1) == 'pbk' ? "active" : "";?>"><a href="<?php echo base_url('pbk');?>">Buku Telepon
          <span class="badge"><?php echo $phonebook->num_rows();?></span>
         </a></li>
-     <li class="<?php echo $this->uri->segment(1) == 'pbk_group' ? "active" : "";?>"><a href="<?php echo base_url('pbk_group');?>">Grup Telepon
+     <li class="<?php echo $this->uri->segment(1) == 'pbk_group' ? "active" : "";?>"><a href="<?php echo base_url('pbk_group');?>">Kategori
           <span class="badge"><?php echo $group->num_rows();?></span>
          </a></li>
   
