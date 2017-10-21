@@ -48,10 +48,13 @@ class Inbox extends Admincore
                   $repliedText = "Maaf FORMAT REGISTRASI SALAH, mohon periksa dan ulangi registrasi";
                   $this->replayedSMS($sender, $repliedText);
               } else {
+                  $groups = $this->model->get_groups();
                   if (count($content) === 5) {
-                      if ($content[0] === 'PASIEN') $group = self::PASIEN;
-                      if ($content[0] === 'KADER') $group = self::KADER;
-                      $this->registerNewUser($sender, $group, $content);
+                      foreach ($groups as $key => $value) {
+                        if ($content[0] === $value->code) {
+                            $this->registerNewUser($sender, $value->ID, $content);
+                        }
+                      }
                   } else {
                       $repliedText = "Maaf FORMAT REGISTRASI SALAH, mohon periksa dan ulangi registrasi";
                       $this->replayedSMS($sender, $repliedText);
@@ -81,8 +84,12 @@ class Inbox extends Admincore
             );
             $isSaved = $this->model->insert('pbk', 'gammu', $data);
             if($isSaved) {
-                if($group == self::PASIEN) $type = 'PASIEN';
-                if($group == self::KADER) $type = 'KADER';
+                $groups = $this->model->get_groups();
+                foreach ($groups as $key => $value) {
+                    if ($group === $value->ID) {
+                        $type = $value->Name;
+                    }
+                }
                 $repliedText = "Terima kasih, Sdr. ".$datasource['name']." telah terdaftar sebagai ".$type;
                 $this->replayedSMS($sender, $repliedText);
                 return;
