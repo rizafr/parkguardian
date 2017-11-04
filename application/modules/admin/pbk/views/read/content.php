@@ -42,7 +42,7 @@
         <div class='table-responsive margin-table'>
             <table class='table'>
                 <caption class='text-right'>
-                    <?php $num_rows = core::get_all('pbk','gammu')->num_rows();?>
+                    <?php $num_rows = core::get_all('pbk','parksms')->num_rows();?>
                     <small>Total data : <u class='text-error'><?php echo $num_rows;?></u></small>
                 </caption><thead>
                 <tr>
@@ -57,8 +57,8 @@
                 </tr></thead>
                 <tbody>
                     <?php $i = $this->uri->segment($segment) + 1;?>
-                    <?php foreach(core::get_all_pagination('pbk','gammu',$per_page,$segment,$url)->result() as $row): { ?><tr>
-                        <?php $groups = core::get_where('pbk_groups','gammu',array('ID' => $row->GroupID));?>
+                    <?php foreach(core::get_all_pagination('pbk','parksms',$per_page,$segment,$url)->result() as $row): { ?><tr>
+                        <?php $groups = core::get_where('pbk_groups','parksms',array('ID' => $row->GroupID));?>
                         <?php $group = $groups->row();?>
                         <td><?php echo $i;?></td>
                         <td><?php echo $row->Name ;?></td>

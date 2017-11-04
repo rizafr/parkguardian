@@ -41,7 +41,7 @@ class Outbox extends Admincore
      */
     function delete($id = '')
     {
-        core::delete('outbox','gammu','ID',$id);
+        core::delete('outbox','parksms','ID',$id);
         redirect('outbox');
     }
     

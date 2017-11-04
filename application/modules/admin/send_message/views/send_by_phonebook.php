@@ -4,7 +4,7 @@
 <form method='POST' action='<?php echo base_url('send_message');?>' charset='UTF-8'>
 
     <label>Pilih Nomor Telepon</label>
-    <?php $query = core::get_all('pbk','gammu');?>
+    <?php $query = core::get_all('pbk','parksms');?>
     <select name='phone'>
         <?php foreach($query->result() as $row){ ?>
         <option value='<?php echo $row->Number;?>'><?php echo $row->Name;?> (<?php echo $row->Number;?>)</option>

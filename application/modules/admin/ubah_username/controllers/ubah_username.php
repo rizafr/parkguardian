@@ -34,7 +34,7 @@ class Ubah_username extends Admincore
 	    
 	    $this->session->set_userdata('username',$username);
 	    
-	    core::update('admin','gammu',array(
+	    core::update('admin','parksms',array(
 				'username' => $username,		
 				),$this->session->userdata('id'));
 	    redirect('ubah_username');
@@ -43,7 +43,7 @@ class Ubah_username extends Admincore
     
     function check_username($username)
     {
-	$query = core::get_where('admin','gammu',array('username' => $username, 'id' => $this->session->userdata('id')),1);
+	$query = core::get_where('admin','parksms',array('username' => $username, 'id' => $this->session->userdata('id')),1);
 	if($query->num_rows() > 0)
 	{
 	    return TRUE;

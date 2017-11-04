@@ -9,14 +9,14 @@
         <!--START FORM-->
         <form method='POST' charset='UTF-8' action='<?php echo base_url('pbk/update').'/'.$this->uri->segment(3);?>' class="form" >
 
-            <?php $query = core::get_where('pbk','gammu',array('ID' => $this->uri->segment(3)),1); ?>
+            <?php $query = core::get_where('pbk','parksms',array('ID' => $this->uri->segment(3)),1); ?>
             <?php $row = $query->row_array();?>
             <input type='hidden' name='id' value='<?php echo $row['ID'];?>' >
             <!-- start GroupID -->
             <div class='control-group <?php echo form_error('GroupID') ? 'error' : ''; ?>'>
                 <label class='control-label' ><strong>Group</strong></label>
                 <div class='controls'>
-                    <?php $group = core::get_all('pbk_groups','gammu');?>
+                    <?php $group = core::get_all('pbk_groups','parksms');?>
                     <select name='GroupID' class='span5'>
                         <option value='0'>Pilih Grup</option>
                         <?php foreach($group->result() as $rows) { ?>

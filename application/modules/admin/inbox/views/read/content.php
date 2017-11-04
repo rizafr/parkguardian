@@ -39,7 +39,7 @@
         <div class='table-responsive margin-table'>
             <table class='table table-condensed'>
                 <caption class='text-right'>
-                    <?php $num_rows = core::get_all('inbox','gammu')->num_rows();?>
+                    <?php $num_rows = core::get_all('inbox','parksms')->num_rows();?>
                     <small>Total data : <u class='text-error'><?php echo $num_rows;?></u></small>
                 </caption><thead>
                 <tr>
@@ -54,7 +54,7 @@
                     <?php if($num_rows == 0){ ?> 
                     <tr><td colspan='4'>No data result ..</td></tr>
                     <?php } ?>
-                    <?php foreach(core::get_all_pagination('inbox','gammu',$per_page,$segment,$url)->result() as $row): { ?><tr>
+                    <?php foreach(core::get_all_pagination('inbox','parksms',$per_page,$segment,$url)->result() as $row): { ?><tr>
                         <td><?php echo $i;?></td>
 
                         <td><?php echo $row->SenderNumber ;?></td>

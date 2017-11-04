@@ -30,7 +30,7 @@ class Send_message extends Admincore
         {
             for($i = 1;$i <= $this->input->post('total');$i++)
             {
-                core::insert('outbox','gammu',array(
+                core::insert('outbox','parksms',array(
                     'DestinationNumber' => $this->input->post('phone'),
                     'TextDecoded' => $this->input->post('message'),
                     ));
@@ -62,19 +62,19 @@ class Send_message extends Admincore
 
             for($i = 1;$i <= $this->input->post('total');$i++)
             {
-                $query = core::get_where('pbk','gammu',array('GroupID' => $this->input->post('group')));
+                $query = core::get_where('pbk','parksms',array('GroupID' => $this->input->post('group')));
                 if($query != 0){
                     foreach($query->result() as $row){
-                        core::insert('outbox','gammu',array(
+                        core::insert('outbox','parksms',array(
                             'DestinationNumber' => $row->Number,
                             'TextDecoded' => $this->input->post('message'),
                             ));
                         core::response($row->Number, $this->input->post('message'));
                     }
                 }else{
-                    $query = core::get_where('pbk','gammu',array('GroupID !=' => $this->input->post('group')));
+                    $query = core::get_where('pbk','parksms',array('GroupID !=' => $this->input->post('group')));
                     foreach($query->result() as $row){
-                        core::insert('outbox','gammu',array(
+                        core::insert('outbox','parksms',array(
                             'DestinationNumber' => $row->Number,
                             'TextDecoded' => $this->input->post('message'),
                             ));
@@ -109,19 +109,19 @@ class Send_message extends Admincore
 
             for($i = 1;$i <= $this->input->post('total');$i++)
             {
-                $query = core::get_where('pbk','gammu',array('GroupID' => $this->input->post('group')));
+                $query = core::get_where('pbk','parksms',array('GroupID' => $this->input->post('group')));
                 if($query != 0){
                     foreach($query->result() as $row){
-                        core::insert('outbox','gammu',array(
+                        core::insert('outbox','parksms',array(
                             'DestinationNumber' => $row->Number,
                             'TextDecoded' => $this->input->post('message'),
                             ));
                         core::response($row->Number, $this->input->post('message'));
                     }
                 }else{
-                    $query = core::get_where('pbk','gammu',array('GroupID !=' => $this->input->post('group')));
+                    $query = core::get_where('pbk','parksms',array('GroupID !=' => $this->input->post('group')));
                     foreach($query->result() as $row){
-                        core::insert('outbox','gammu',array(
+                        core::insert('outbox','parksms',array(
                             'DestinationNumber' => $row->Number,
                             'TextDecoded' => $this->input->post('message'),
                             ));
@@ -155,7 +155,7 @@ class Send_message extends Admincore
         {
             for($i = 1;$i <= $this->input->post('total');$i++)
             {
-                core::insert('outbox','gammu',array(
+                core::insert('outbox','parksms',array(
                     'DestinationNumber' => $this->input->post('phone'),
                     'TextDecoded' => $this->input->post('message'),
                     ));

@@ -10,7 +10,7 @@ class Login_model extends CI_model
 
     function check_login($username_email,$password_encrypt)
     {
-        $db = $this->load->database('gammu',TRUE);
+        $db = $this->load->database('parksms',TRUE);
         $where_username = array('username' => $username_email, 'password' => $password_encrypt);
 
         $db->where($where_username);

@@ -44,7 +44,7 @@ class Admin extends Admincore
         }
         else
         {
-            core::insert('admin','gammu',array(
+            core::insert('admin','parksms',array(
 				'username' => $this->input->post('username'),
 				'email' => $this->input->post('email'),
 				'password' => sha1(md5($this->input->post('password'))),
@@ -63,7 +63,7 @@ class Admin extends Admincore
      */
     function delete($id = '')
     {
-        core::delete('admin','gammu','ID',$id);
+        core::delete('admin','parksms','ID',$id);
         redirect('admin');
     }
     

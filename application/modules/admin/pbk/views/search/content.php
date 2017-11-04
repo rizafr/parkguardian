@@ -53,7 +53,7 @@
         <div class='table-responsive margin-table'>
             <table class='table'>
                 <caption class='text-right'>
-                    <?php $num_rows = core::get_search('pbk','gammu',$this->input->get('search'),$this->input->get('search_by'))->num_rows();?>
+                    <?php $num_rows = core::get_search('pbk','parksms',$this->input->get('search'),$this->input->get('search_by'))->num_rows();?>
                     <small>Total data : <u class='text-error'><?php echo $num_rows;?></u>
                         ( Hasil pencarian berdasarkan <u class='text-error'> <?php echo $this->input->get('search_by');?></u> ) -
                         <a href='<?php echo base_url('pbk');?>'>Back to all</a></small>
@@ -68,8 +68,8 @@
                     </tr></thead>
                     <tbody>
                         <?php $i = $this->input->get('offset') + 1;?>
-                        <?php foreach(core::get_search_pagination('pbk','gammu',$this->input->get('search'),$this->input->get('search_by'),$per_page,$url)->result() as $row): { ?><tr>
-                            <?php $groups = core::get_where('pbk_groups','gammu',array('ID' => $row->GroupID));?>
+                        <?php foreach(core::get_search_pagination('pbk','parksms',$this->input->get('search'),$this->input->get('search_by'),$per_page,$url)->result() as $row): { ?><tr>
+                            <?php $groups = core::get_where('pbk_groups','parksms',array('ID' => $row->GroupID));?>
                             <?php $group = $groups->row();?>
                             <td><?php echo $i;?></td>
                             <td><?php echo $row->Name ;?></td>

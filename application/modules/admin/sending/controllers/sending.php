@@ -43,7 +43,7 @@ class Sending extends Admincore
      */
     function delete($id = '')
     {
-        core::delete('sentitems','gammu','ID',$id);
+        core::delete('sentitems','parksms','ID',$id);
         redirect('sending');
     }
     

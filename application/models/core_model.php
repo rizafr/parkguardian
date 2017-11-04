@@ -400,7 +400,7 @@ class Core_model extends CI_model
 
     function get_inbox()
     {
-        $db = $this->load->database('gammu',TRUE);
+        $db = $this->load->database('parksms',TRUE);
         $where = array('Processed' => 'false');
         $db->select('*');
         $db->from('inbox');
@@ -414,9 +414,23 @@ class Core_model extends CI_model
         }
     }
     
+    function get_code()
+    {
+        $db = $this->load->database('parksms',TRUE);
+        $db->select('idsubcategories, idpbk_groups,code');
+        $db->from('subcategories');
+        $query = $db->get();
+        if ($query->num_rows() > 0)
+        {
+           return $query->result_array();
+        } else {
+            return null;
+        }
+    }
+    
     function get_groups()
     {
-        $db = $this->load->database('gammu',TRUE);
+        $db = $this->load->database('parksms',TRUE);
         $db->select('*');
         $db->from('pbk_groups');
         $query = $db->get();
@@ -430,7 +444,7 @@ class Core_model extends CI_model
 
     function exist_user($number)
     {
-        $db = $this->load->database('gammu',TRUE);
+        $db = $this->load->database('parksms',TRUE);
         $where = array('Number' => $number);
         $db->select('*');
         $db->from('pbk');

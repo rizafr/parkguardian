@@ -5,7 +5,7 @@
 <form method='POST' action='<?php echo base_url('send_message/send_by_group');?>' charset='UTF-8'>
 
     <label>Pilih Grup</label>
-    <?php $query = core::get_all('pbk_groups','gammu');?>
+    <?php $query = core::get_all('pbk_groups','parksms');?>
     <select name='group' class="span3">
         <option value='0'>Pilih</option>
         <?php foreach($query->result() as $row){?>

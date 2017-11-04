@@ -29,7 +29,7 @@ class Ubah_password extends Admincore
 	    $this->session->set_flashdata('sukses','sukses');
 	    $password_encrypt = sha1(md5($this->input->post('password_baru')));
 	    
-	    core::update('admin','gammu',array(
+	    core::update('admin','parksms',array(
 				'password' => $password_encrypt,		
 				),$this->session->userdata('id'));
 	    redirect('ubah_password');
@@ -39,7 +39,7 @@ class Ubah_password extends Admincore
     function check_password($password)
     {
 	$password_encrypt = sha1(md5($password));
-	$query = core::get_where('admin','gammu',array('password' => $password_encrypt,'username' => $this->session->userdata('username')),1);
+	$query = core::get_where('admin','parksms',array('password' => $password_encrypt,'username' => $this->session->userdata('username')),1);
 	
 	if($query->num_rows() > 0)
 	{

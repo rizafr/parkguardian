@@ -2,16 +2,12 @@
 
 class Inbox extends Admincore
 {
-    const REGISTER = 1;
-    const UPDATE = 2;
-    const PASIEN = 1;
-    const KADER = 2;
-
-    function __construct()
+    private $_command;
+            function __construct()
     {
         parent::__construct();
         $this->load->model('inbox_model','model');
-        core::update_where('inbox','gammu',array('newComing' => 0),'newComing',1);
+        core::update_where('inbox','parksms',array('Status' => -1),'Status',3);
     }
 
     /* METHOD "READ"
@@ -22,67 +18,44 @@ class Inbox extends Admincore
         $getInbox = $this->model->get_inbox();
         if($getInbox) {
           foreach ($getInbox as $keys => $values) {
-            $this->smsreg($values);
+            $this->smsReport($values);
           }
         }
-        $data['include'] =   $this->load->view('/read/include','',TRUE);
-        $data['content'] =   $this->load->view('/read/content',$data,TRUE);
-        $this->load->view("admin/main",$data);
+//        $data['include'] =   $this->load->view('/read/include','',TRUE);
+//        $data['content'] =   $this->load->view('/read/content',$data,TRUE);
+//        $this->load->view("admin/main",$data);
     }
 
-    private function smsreg($data)
+    private function smsReport($data)
     {
         $sender = $data['SenderNumber'];
         $content = strtoupper($data['TextDecoded']);
         $smsID = $data['ID'];
-
         $split = explode(" ", $content);
-        $command = $split[0];
+        $this->_command = $split[0];
         if (count($split) > 2) {
-            $repliedText = "Maaf FORMAT REGISTRASI SALAH, mohon periksa dan ulangi registrasi";
-            $this->replayedSMS($sender, $repliedText);
+            $repliedText = "Maaf FORMAT LAPORAN SALAH, mohon periksa dan ulangi laporan";
+            $this->replayedSMS($sender, $repliedText, $smsID);
         } else {
-          if ($command == "REG") {
-              $content = explode("#", $split[1]);
-              if (count($content) < 3 || count($content) > 5) {
-                  $repliedText = "Maaf FORMAT REGISTRASI SALAH, mohon periksa dan ulangi registrasi";
-                  $this->replayedSMS($sender, $repliedText);
-              } else {
-                  $groups = $this->model->get_groups();
-                  if (count($content) === 5) {
-                      foreach ($groups as $key => $value) {
-                        if ($content[0] === $value->code) {
-                            $this->registerNewUser($sender, $value->ID, $content);
-                        }
-                      }
-                  } else {
-                      $repliedText = "Maaf FORMAT REGISTRASI SALAH, mohon periksa dan ulangi registrasi";
-                      $this->replayedSMS($sender, $repliedText);
-                  }                        
-              }
-          }
+            $content = explode("#", $split[1]);
+            if (count($content) !== 3) {
+                $repliedText = "Maaf FORMAT LAPORAN SALAH, mohon periksa dan ulangi laporan";
+                $this->replayedSMS($sender, $repliedText, $smsID);
+            } else {
+                $this->addReport($sender, $content, $smsID);
+            }
         }
     }
 
-    private function registerNewUser($sender, $group, $content)
+    private function addReport($sender, $content, $smsID)
     {
-        $isExist = $this->model->exist_user($sender);
-        if (!empty($isExist)) {
-            $repliedText = "Maaf, notelp ".$sender." telah terdaftar sebelumnya atas nama " . $isExist->Name;
-            $this->replayedSMS($sender, $repliedText);
-        } else {
-            // $datasource = $this->structedSource(self::REGISTER, $type, $sender, $arrayContent);
-            // $query2 = "INSERT INTO pbk (GroupID, Name, Number) VALUES ('$idgroup', '$nama', '$noHP')";
-            // mysql_query($query2);
-            // $tbl,$database,$arr
             $data = array(
-              'GroupID' => $group,
-              'Name' => $content[1],
+              'GroupID' => $this->_command,
+              'RtNumber' => $content[1],
               'RwNumber' => $content[2],
-              'Status' => $content[3],
-              'Birth' => $content[4],
+              'suspect' => $content[3],
             );
-            $isSaved = $this->model->insert('pbk', 'gammu', $data);
+            $isSaved = $this->model->insert('pbk', 'parksms', $data);
             if($isSaved) {
                 $groups = $this->model->get_groups();
                 foreach ($groups as $key => $value) {
@@ -96,12 +69,11 @@ class Inbox extends Admincore
             }
             $repliedText = "Maaf, Sdr. ".$datasource['name']." GAGAL tersimpan, silahkan coba lagi";
             $this->replayedSMS($sender, $repliedText);
-        }
     }
 
     private function replayedSMS($sender, $message, $smsID)
     {
-        core::insert('outbox','gammu',array(
+        core::insert('outbox','parksms',array(
           'DestinationNumber' => $sender,
           'TextDecoded' => $message,
         ));
@@ -135,7 +107,7 @@ class Inbox extends Admincore
         }
         else
         {
-            core::insert('inbox','gammu',array(
+            core::insert('inbox','parksms',array(
 				'UpdatedInDB' => $this->input->post('UpdatedInDB'),
 				'Text' => $this->input->post('Text'),
 				'SenderNumber' => $this->input->post('SenderNumber'),
@@ -162,7 +134,7 @@ class Inbox extends Admincore
         }
         else
         {
-            core::update('inbox','gammu',array(
+            core::update('inbox','parksms',array(
 				'UpdatedInDB' => $this->input->post('UpdatedInDB'),
 				'Text' => $this->input->post('Text'),
 				'SenderNumber' => $this->input->post('SenderNumber'),
@@ -185,7 +157,7 @@ class Inbox extends Admincore
      */
     function delete($id = '')
     {
-        core::delete('inbox','gammu','ID',$id);
+        core::delete('inbox','parksms','ID',$id);
         redirect('inbox');
     }
 

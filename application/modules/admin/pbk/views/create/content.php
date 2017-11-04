@@ -33,7 +33,7 @@
                 <input type="text" class="span2" value='<?php echo set_value("x[$i][phone]");?>' name='x[<?php echo $i;?>][phone]' placeholder="No Telephone ..">
                 <select name='x[<?php echo $i;?>][group]' class="span2">
                     <option>Pilih Grup</option>
-                    <?php $query = core::get_all('pbk_groups','gammu');?>
+                    <?php $query = core::get_all('pbk_groups','parksms');?>
                     <?php foreach($query->result() as $row){?>
                     <option value='<?php echo $row->ID;?>'><?php echo $row->Name;?></option>
                     <?php } ?>

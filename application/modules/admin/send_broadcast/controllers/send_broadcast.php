@@ -32,7 +32,7 @@ class Send_broadcast extends Admincore
            {
             foreach($this->input->post('SendNumber') as $x)
             {
-                core::insert('outbox','gammu',array(
+                core::insert('outbox','parksms',array(
                     'DestinationNumber' => $x,
                     'TextDecoded' => $this->input->post('message'),
                     ));

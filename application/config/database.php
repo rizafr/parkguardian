@@ -44,24 +44,24 @@
 | The $active_record variables lets you determine whether or not to load
 | the active record class
 */
-$active_group = 'gammu';
+$active_group = 'parksms';
 $active_record = TRUE;
 
-$db['gammu']['hostname'] = 'localhost';
-$db['gammu']['username'] = 'root';
-$db['gammu']['password'] = '';
-$db['gammu']['database'] = 'parksms';
-$db['gammu']['dbdriver'] = 'mysql';
-$db['gammu']['dbprefix'] = '';
-$db['gammu']['pconnect'] = TRUE;
-$db['gammu']['db_debug'] = TRUE;
-$db['gammu']['cache_on'] = FALSE;
-$db['gammu']['cachedir'] = '';
-$db['gammu']['char_set'] = 'utf8';
-$db['gammu']['dbcollat'] = 'utf8_general_ci';
-$db['gammu']['swap_pre'] = '';
-$db['gammu']['autoinit'] = TRUE;
-$db['gammu']['stricton'] = FALSE;
+$db['parksms']['hostname'] = 'localhost';
+$db['parksms']['username'] = 'root';
+$db['parksms']['password'] = 'qwe123';
+$db['parksms']['database'] = 'parksms';
+$db['parksms']['dbdriver'] = 'mysql';
+$db['parksms']['dbprefix'] = '';
+$db['parksms']['pconnect'] = TRUE;
+$db['parksms']['db_debug'] = TRUE;
+$db['parksms']['cache_on'] = FALSE;
+$db['parksms']['cachedir'] = '';
+$db['parksms']['char_set'] = 'utf8';
+$db['parksms']['dbcollat'] = 'utf8_general_ci';
+$db['parksms']['swap_pre'] = '';
+$db['parksms']['autoinit'] = TRUE;
+$db['parksms']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

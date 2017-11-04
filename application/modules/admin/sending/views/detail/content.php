@@ -4,7 +4,7 @@
   
   
         <table class='table table-striped table-bordered table-hover table-condensed'>
-<tbody><?php foreach (core::get_where('sentitems','gammu',array('id' => $this->uri->segment(3)),1)->result() as $row) { ; ?>
+<tbody><?php foreach (core::get_where('sentitems','parksms',array('id' => $this->uri->segment(3)),1)->result() as $row) { ; ?>
 <tr><td>UpdatedInDB</td>
 <td><?php echo $row->UpdatedInDB;?></td></tr>
 <tr><td>InsertIntoDB</td>
