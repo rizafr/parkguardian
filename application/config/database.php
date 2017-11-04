@@ -49,7 +49,7 @@ $active_record = TRUE;
 
 $db['parksms']['hostname'] = 'localhost';
 $db['parksms']['username'] = 'root';
-$db['parksms']['password'] = 'qwe123';
+$db['parksms']['password'] = '';
 $db['parksms']['database'] = 'parksms';
 $db['parksms']['dbdriver'] = 'mysql';
 $db['parksms']['dbprefix'] = '';

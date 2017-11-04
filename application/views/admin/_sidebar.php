@@ -5,6 +5,8 @@
 <?php $outbox = core::get_all('outbox','parksms');?>
 <?php $phonebook = core::get_all('pbk','parksms');?>
 <?php $group = core::get_all('pbk_groups','parksms');?>
+<?php $categories = core::get_all('categories','parksms', 'idcategories');?>
+<?php $subcategories = core::get_all('subcategories','parksms', 'idsubcategories');?>
 
  <div class='box box-left'>
     <ul class="nav nav-list">
@@ -12,9 +14,20 @@
     <li class="<?php echo $this->uri->segment(1) == 'pbk' ? "active" : "";?>"><a href="<?php echo base_url('pbk');?>">Buku Telepon
          <span class="badge"><?php echo $phonebook->num_rows();?></span>
         </a></li>
-     <li class="<?php echo $this->uri->segment(1) == 'pbk_group' ? "active" : "";?>"><a href="<?php echo base_url('pbk_group');?>">Kategori
+     <li class="<?php echo $this->uri->segment(1) == 'pbk_group' ? "active" : "";?>"><a href="<?php echo base_url('pbk_group');?>">Kategori Pengguna
           <span class="badge"><?php echo $group->num_rows();?></span>
          </a></li>
+
+    <li class='divider'></li>
+
+    <li class="<?php echo $this->uri->segment(1) == 'categories' ? "active" : "";?>"><a href="<?php echo base_url('categories');?>">Kategori Laporan
+         <span class="badge"><?php echo $categories->num_rows();?></span>
+        </a>
+    </li>
+    <li class="<?php echo $this->uri->segment(1) == 'subcategories' ? "active" : "";?>"><a href="<?php echo base_url('subcategories');?>">Kategori Sub Laporan
+         <span class="badge"><?php echo $subcategories->num_rows();?></span>
+        </a>
+    </li>
   
     <li class='divider'></li>
     <li class="<?php echo $this->uri->segment(1) == 'send_message' ? "active" : "";?>"><a href="<?php echo base_url('send_message');?>">Kirim Pesan</a></li>

@@ -20,9 +20,9 @@
                 <div class='span2'>Nama</div>
                 <div class='span2'>Telepon</div>
                 <div class='span2'>Grup</div>
-                <div class='span2'>Rw</div>
-                <div class='span2'>Umur</div>
-                <div class='span1'>Status</div>
+                <div class='span1'>RT</div>
+                <div class='span1'>RW</div>
+                <div class='span2'>Keterangan</div>
             </div>
             <?php $param = $this->uri->segment(3) == '' ? '1' :  $this->uri->segment(3)  ; ?>
             <?php for($i = 1;$i <= $param;$i++){ ?>
@@ -38,9 +38,9 @@
                     <option value='<?php echo $row->ID;?>'><?php echo $row->Name;?></option>
                     <?php } ?>
                 </select>
-                <input type="text" class="span2" value='<?php echo set_value("x[$i][RwNumber]");?>' name='x[<?php echo $i;?>][RwNumber]' placeholder="RW ..">
-                <input type="text" class="span2" value='<?php echo set_value("x[$i][Birth]");?>' name='x[<?php echo $i;?>][Birth]' placeholder="Umur ..">
-                <input type="text" class="span1" value='<?php echo set_value("x[$i][Status]");?>' name='x[<?php echo $i;?>][Status]' placeholder="Status ..">
+                <input type="text" class="span1" value='<?php echo set_value("x[$i][RtNumber]");?>' name='x[<?php echo $i;?>][RtNumber]' placeholder="RT ..">
+                <input type="text" class="span1" value='<?php echo set_value("x[$i][RwNumber]");?>' name='x[<?php echo $i;?>][RwNumber]' placeholder="RW ..">
+                <input type="text" class="span2" value='<?php echo set_value("x[$i][suspect]");?>' name='x[<?php echo $i;?>][suspect]' placeholder="Keterangan ..">
 
             </div>
 
@@ -50,8 +50,8 @@
                 <div class='span2'><?php echo form_error("x[$i][phone]");?></div>
                 <div class='span2'><?php echo form_error("x[$i][group]");?></div>
                 <div class='span2'><?php echo form_error("x[$i][RwNumber]");?></div>
-                <div class='span2'><?php echo form_error("x[$i][Birth]");?></div>
-                <div class='span2'><?php echo form_error("x[$i][Status]");?></div>
+                <div class='span2'><?php echo form_error("x[$i][RtNumber]");?></div>
+                <div class='span2'><?php echo form_error("x[$i][suspect]");?></div>
             </div>
             <?php } ?>
             <hr>

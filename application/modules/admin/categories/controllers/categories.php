@@ -1,11 +1,11 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Pbk_group extends Admincore
+class Categories extends Admincore
 {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('pbk_group_model','model');
+        $this->load->model('categories_model','model');
     }
     
     /* METHOD "READ"
@@ -44,11 +44,10 @@ class Pbk_group extends Admincore
         }
         else
         {
-            core::insert('pbk_groups','parksms',array(
-                'Name' => $this->input->post('Name'),
-				'phone' => $this->input->post('phone'),
+            core::insert('categories','parksms',array(
+				'label' => $this->input->post('label'),
 				));
-            redirect('pbk_group');
+            redirect('categories');
         }
     }
 
@@ -64,17 +63,20 @@ class Pbk_group extends Admincore
         
         if ($this->form_validation->run('update') == FALSE)
         {
-        $data['include'] =   $this->load->view('/update/include','',TRUE);
-        $data['content'] =   $this->load->view('/update/content',$data,TRUE);
-        $this->load->view("admin/main",$data);
+            $data['include'] =   $this->load->view('/update/include','',TRUE);
+            $data['content'] =   $this->load->view('/update/content',$data,TRUE);
+            $this->load->view("admin/main",$data);
         }
         else
         {
-            core::update('pbk_groups','parksms',array(
-                'Name' => $this->input->post('Name'),
-				'phone' => $this->input->post('phone'),
-				),$this->input->post('id'));
-            redirect('pbk_group');
+            core::update('categories','parksms',
+                [
+				    'label' => $this->input->post('label'),
+				],
+                $this->input->post('idcategories'),
+                'idcategories'
+            );
+            redirect('categories');
         }
     }
     
@@ -92,9 +94,7 @@ class Pbk_group extends Admincore
      */
     function delete($id = '')
     {
-        core::delete('pbk_groups','parksms','ID',$id);
-        redirect('pbk_group');
+        core::delete('categories','parksms','idcategories',$id);
+        redirect('categories');
     }
-    
-    
 }
