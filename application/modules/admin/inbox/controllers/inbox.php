@@ -3,7 +3,8 @@
 class Inbox extends Admincore
 {
     private $_command;
-            function __construct()
+
+    function __construct()
     {
         parent::__construct();
         $this->load->model('inbox_model','model');
@@ -21,9 +22,9 @@ class Inbox extends Admincore
             $this->smsReport($values);
           }
         }
-//        $data['include'] =   $this->load->view('/read/include','',TRUE);
-//        $data['content'] =   $this->load->view('/read/content',$data,TRUE);
-//        $this->load->view("admin/main",$data);
+        $data['include'] =   $this->load->view('/read/include','',TRUE);
+        $data['content'] =   $this->load->view('/read/content',$data,TRUE);
+        $this->load->view("admin/main",$data);
     }
 
     private function smsReport($data)
@@ -31,55 +32,68 @@ class Inbox extends Admincore
         $sender = $data['SenderNumber'];
         $content = strtoupper($data['TextDecoded']);
         $smsID = $data['ID'];
-        $split = explode(" ", $content);
+
+        $split = explode('#', $content);
         $this->_command = $split[0];
-        if (count($split) > 2) {
-            $repliedText = "Maaf FORMAT LAPORAN SALAH, mohon periksa dan ulangi laporan";
+
+        $code = $this->model->check_code($this->_command);
+        if ($code == null) {
+            $repliedText = "Maaf FORMAT KODE ".$this->_command." TIDAK DITEMUKAN, mohon periksa dan ulangi laporan";
             $this->replayedSMS($sender, $repliedText, $smsID);
         } else {
-            $content = explode("#", $split[1]);
-            if (count($content) !== 3) {
+            if (count($split) !== 4) {
                 $repliedText = "Maaf FORMAT LAPORAN SALAH, mohon periksa dan ulangi laporan";
                 $this->replayedSMS($sender, $repliedText, $smsID);
             } else {
-                $this->addReport($sender, $content, $smsID);
+                $this->addReport($sender, $split, $smsID);
             }
         }
     }
 
     private function addReport($sender, $content, $smsID)
     {
-            $data = array(
-              'GroupID' => $this->_command,
-              'RtNumber' => $content[1],
-              'RwNumber' => $content[2],
-              'suspect' => $content[3],
-            );
-            $isSaved = $this->model->insert('pbk', 'parksms', $data);
-            if($isSaved) {
-                $groups = $this->model->get_groups();
-                foreach ($groups as $key => $value) {
-                    if ($group === $value->ID) {
-                        $type = $value->Name;
-                    }
+        $data = array(
+          'GroupID' => $this->_command,
+          'RtNumber' => $content[1],
+          'RwNumber' => $content[2],
+          'suspect' => $content[3],
+        );
+        $returnId = $this->model->insert('pbk', 'parksms', $data);
+        if($returnId) {
+            $groups = $this->model->get_code();
+            foreach ($groups as $value) {
+                if ($this->_command == $value['code']) {
+                    $this->forwardMessage($returnId, $value['idpbk_groups'], $value['label']);
                 }
-                $repliedText = "Terima kasih, Sdr. ".$datasource['name']." telah terdaftar sebagai ".$type;
-                $this->replayedSMS($sender, $repliedText);
-                return;
             }
-            $repliedText = "Maaf, Sdr. ".$datasource['name']." GAGAL tersimpan, silahkan coba lagi";
-            $this->replayedSMS($sender, $repliedText);
+            $repliedText = "Terima kasih, laporan anda telah kami TERIMA";
+            $this->replayedSMS($sender, $repliedText, $smsID);
+            return;
+        }
+        $repliedText = "Maaf, laporan anda GAGAL diterima, silahkan coba lagi";
+        $this->replayedSMS($sender, $repliedText, $smsID);
+    }
+    
+    private function forwardMessage($returnId, $idPic, $label)
+    {
+        $pic = $this->model->get_picPhone($idPic);
+        $report = $this->model->get_report($returnId);
+        $repliedText = 'Laporan :' . $label . ' di RT'. $report->RtNumber . ' RW' . $report->RwNumber;
+        $this->replayedSMS($pic->phone, $repliedText);
     }
 
-    private function replayedSMS($sender, $message, $smsID)
+    private function replayedSMS($sender, $message, $smsID = null)
     {
         core::insert('outbox','parksms',array(
           'DestinationNumber' => $sender,
           'TextDecoded' => $message,
         ));
         core::response($sender, $message);
-        $query = "UPDATE inbox SET Processed = 'true' WHERE ID = '$smsID'";
-        mysql_query($query);
+        
+        if ($smsID !== null) {
+            $query = "UPDATE inbox SET Processed = 'true' WHERE ID = '$smsID'";
+            mysql_query($query);
+        }
     }
 
      /* METHOD "SEARCH"*/
