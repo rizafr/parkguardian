@@ -57,6 +57,7 @@ class Inbox extends Admincore
           'RtNumber' => $content[1],
           'RwNumber' => $content[2],
           'suspect' => $content[3],
+          'createdTime' => date('Y-m-d H:i:s'),
         );
         $returnId = $this->model->insert('pbk', 'parksms', $data);
         if($returnId) {

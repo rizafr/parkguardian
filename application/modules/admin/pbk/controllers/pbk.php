@@ -55,7 +55,8 @@ class Pbk extends Admincore
                     'RwNumber' => $row['RwNumber'],
                     'Status' => $row['Status'],
                     'RtNumber' => $row['RtNumber'],
-				    'suspect' => $row['suspect']
+				    'suspect' => $row['suspect'],
+                    'createdTime' => date('Y-m-d H:i:s')
 				));
 	  }
             redirect('pbk');

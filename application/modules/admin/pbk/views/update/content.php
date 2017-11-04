@@ -37,11 +37,11 @@
             <div class='control-group <?php echo form_error('GroupID') ? 'error' : ''; ?>'>
                 <label class='control-label' ><strong>Group</strong></label>
                 <div class='controls'>
-                    <?php $group = core::get_all('pbk_groups','parksms');?>
+                    <?php $group = core::get_all('subcategories','parksms', 'subcategories');?>
                     <select name='GroupID' class='span5'>
-                        <option value='0'>Pilih Grup</option>
+                        <option value='0'>Pilih Kategori</option>
                         <?php foreach($group->result() as $rows) { ?>
-                        <option value='<?php echo $rows->ID;?>' <?php echo $row['GroupID'] == $rows->ID ? "selected" : "";?>><?php echo $rows->Name;?></option>
+                        <option value='<?php echo $rows->idsubcategories;?>' <?php echo $row['GroupID'] == $rows->idsubcategories ? "selected" : "";?>><?php echo $rows->label;?></option>
                         <?php } ?>
                     </select>
                     <?php echo form_error('GroupID'); ?>

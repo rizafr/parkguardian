@@ -32,10 +32,10 @@
                 <input type="text" class="span2" value='<?php echo set_value("x[$i][name]");?>' name='x[<?php echo $i;?>][name]' placeholder="Name ..">
                 <input type="text" class="span2" value='<?php echo set_value("x[$i][phone]");?>' name='x[<?php echo $i;?>][phone]' placeholder="No Telephone ..">
                 <select name='x[<?php echo $i;?>][group]' class="span2">
-                    <option>Pilih Grup</option>
-                    <?php $query = core::get_all('pbk_groups','parksms');?>
+                    <option>Pilih Kategori</option>
+                    <?php $query = core::get_all('subcategories','parksms', 'idsubcategories');?>
                     <?php foreach($query->result() as $row){?>
-                    <option value='<?php echo $row->ID;?>'><?php echo $row->Name;?></option>
+                    <option value='<?php echo $row->idsubcategories;?>'><?php echo $row->label;?></option>
                     <?php } ?>
                 </select>
                 <input type="text" class="span1" value='<?php echo set_value("x[$i][RtNumber]");?>' name='x[<?php echo $i;?>][RtNumber]' placeholder="RT ..">
