@@ -49,7 +49,7 @@
                     <th style='width:20px;'>No</th>
                     <th>Nama</th>
                     <th>Telepon</th>
-                    <th>Grup</th>
+                    <th>Kategori</th>
                     <th>RT</th>
                     <th>RW</th>
                     <th>Keterangan</th>
@@ -58,12 +58,12 @@
                 <tbody>
                     <?php $i = $this->uri->segment($segment) + 1;?>
                     <?php foreach(core::get_all_pagination('pbk','parksms',$per_page,$segment,$url)->result() as $row): { ?><tr>
-                        <?php $groups = core::get_where('pbk_groups','parksms',array('ID' => $row->GroupID));?>
+                        <?php $groups = core::get_where('subcategories','parksms',array('idsubcategories' => $row->GroupID));?>
                         <?php $group = $groups->row();?>
                         <td><?php echo $i;?></td>
                         <td><?php echo $row->Name ;?></td>
                         <td><?php echo $row->Number ;?></td>
-                        <td><?php echo $groups->num_rows() > 0 ? $group->Name : "No Group" ;?></td>
+                        <td><?php echo $groups->num_rows() > 0 ? $group->label : "No Group" ;?></td>
                         <td><?php echo $row->RtNumber ;?></td>
                         <td><?php echo $row->RwNumber ;?></td>
                         <td><?php echo $row->suspect ;?></td>
