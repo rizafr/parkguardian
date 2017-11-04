@@ -12,7 +12,6 @@ class Core_model extends CI_model
     function get_all($tbl,$database,$order_by,$limit,$offset)
     {
 	$db = $this->load->database($database,TRUE);
-        $db->order_by($order_by);
         $query = $db->get($tbl,$limit,$offset);
         return $query;
     }
@@ -44,7 +43,6 @@ class Core_model extends CI_model
             $config['cur_tag_open'] = '<li class="active"><a>';
             $config['cur_tag_close'] = '</a></li>';
             $this->pagination->initialize($config);
-            $db->order_by("id", "desc");
             $query = $db->get($tbl,$config['per_page'],$this->uri->segment($segment));
             return $query;
     }
@@ -221,7 +219,6 @@ class Core_model extends CI_model
             $this->pagination->initialize($config);
 	    $db->select('*');
 	    $db->like($tbl2.'.'.$search_by,$search);
-	    $db->order_by($tbl2.'.id','desc');
 	    $db->from($tbl1);
 	    $db->join($tbl2, $join_by);
 	    $db->limit($config['per_page'], $this->input->get('offset'));
@@ -281,7 +278,6 @@ class Core_model extends CI_model
             $this->pagination->initialize($config);
 	    $db->select('*');
 	    $db->like($tbl2.'.'.$search_by,$search);
-	    $db->order_by($tbl2.'.id','desc');
 	    $db->from($tbl1);
 	    $db->join($tbl2, $join_by);
 	    $db->limit($config['per_page'], $this->input->get('offset'));
@@ -293,7 +289,6 @@ class Core_model extends CI_model
     function get_search($tbl,$database,$search,$search_by,$limit,$offset)
     {
 	$db = $this->load->database($database,TRUE);
-            $db->order_by("id", "desc");
             $db->like($search_by,$search);
             $query = $db->get($tbl,$limit);
             return $query;
@@ -333,7 +328,6 @@ class Core_model extends CI_model
             $config['cur_tag_open'] = '<li class="active"><a>';
             $config['cur_tag_close'] = '</a></li>';
             $this->pagination->initialize($config);
-            $db->order_by("id", "desc");
 	    $db->like($search_by,$search);
             $query = $db->get($tbl,$config['per_page'],$this->input->get('offset'));
             return $query;
@@ -343,7 +337,6 @@ class Core_model extends CI_model
     function get_where($tbl,$database,$array,$limit,$offset)
     {
 	$db = $this->load->database($database,TRUE);
-        $db->order_by("id","desc");
         $query = $db->get_where($tbl,$array,$limit,$offset);
         return $query;
     }
@@ -382,7 +375,6 @@ class Core_model extends CI_model
             $config['cur_tag_open'] = '<li class="active"><a>';
             $config['cur_tag_close'] = '</a></li>';
             $this->pagination->initialize($config);
-            $db->order_by("id", "desc");
             $query = $db->get_where($tbl,$array,$config['per_page'],$this->input->get('offset'));
             return $query;
     }
@@ -529,11 +521,16 @@ class Core_model extends CI_model
         $db->insert($tbl,$data);
         return $db->insert_id();
     }
-    function update($tbl,$database,$arr,$id)
+    function update($tbl,$database,$arr,$id, $where = NULL)
     {
+        if ($where == NULL) {
+            $whereData = 'id';
+        } else {
+            $whereData = $where;
+        }
 	$db = $this->load->database($database,TRUE);
         $data = $arr;
-	$db->where('id', $id);
+	$db->where($whereData, $id);
 	$db->update($tbl, $data);
     }
 

@@ -10,11 +10,17 @@ class Core extends MX_Controller {
     }
 
 // ------------------------- get all
-    function get_all($tbl,$database,$order_by = 'id desc',$limit = NULL,$offset = NULL)
+    function get_all($tbl,$database,$order = NULL,$limit = NULL,$offset = NULL)
     {
+        if ($order == null) {
+            $order_by = 'id desc';
+        } else {
+            $order_by = $order;
+        }
         $query = $this->model->get_all($tbl,$database,$order_by,$limit,$offset);
         return $query;
     }
+
     function get_all_pagination($tbl,$database,$per_page,$segment,$url)
     {
         $query = $this->model->get_all_pagination($tbl,$database,$per_page,$segment,$url);
@@ -167,9 +173,9 @@ class Core extends MX_Controller {
         $this->model->insert($tbl,$database,$arr);
     }
 
-    function update($tbl,$database,$arr,$id)
+    function update($tbl,$database,$arr,$id, $where)
     {
-        $this->model->update($tbl,$database,$arr,$id);
+        $this->model->update($tbl,$database,$arr,$id, $where);
     }
     function update_where($tbl,$database,$arr,$where,$value)
     {

@@ -1,11 +1,11 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Pbk extends Admincore
+class Subcategories extends Admincore
 {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('pbk_model','model');
+        $this->load->model('subcategories_model','model');
     }
     
     /* METHOD "READ"
@@ -35,8 +35,8 @@ class Pbk extends Admincore
 	if(!empty($_POST['x']))
         {
 	    foreach($_POST['x'] as $row => $val) {
-	    $this->form_validation->set_rules("x[$row][name]",'Name','required|trim');
-	    $this->form_validation->set_rules("x[$row][phone]",'Phone','required|trim');
+	    $this->form_validation->set_rules("x[$row][code]",'code','required|trim');
+	    $this->form_validation->set_rules("x[$row][label]",'label','required|trim');
 	   }
 	}
 	
@@ -48,17 +48,14 @@ class Pbk extends Admincore
         else
         {
 	  foreach($_POST['x'] as $row) {
-            core::insert('pbk','parksms',array(
-				    'Name'  => $row['name'],
-				    'Number' => $row['phone'],
-                    'GroupID' => $row['group'],
-                    'RwNumber' => $row['RwNumber'],
-                    'Status' => $row['Status'],
-                    'RtNumber' => $row['RtNumber'],
-				    'suspect' => $row['suspect']
-				));
+            core::insert('subcategories','parksms',[
+				    'idcategories'  => $row['category'],
+                    'code' => $row['code'],
+				    'label' => $row['label'],
+                    'idpbk_groups' => $row['group'],
+				]);
 	  }
-            redirect('pbk');
+            redirect('subcategories');
         }
     }
 
@@ -74,22 +71,21 @@ class Pbk extends Admincore
         
         if ($this->form_validation->run('update') == FALSE)
         {
-        $data['include'] =   $this->load->view('/update/include','',TRUE);
-        $data['content'] =   $this->load->view('/update/content',$data,TRUE);
-        $this->load->view("admin/main",$data);
+            $data['include'] =   $this->load->view('/update/include','',TRUE);
+            $data['content'] =   $this->load->view('/update/content',$data,TRUE);
+            $this->load->view("admin/main",$data);
         }
         else
         {
-            core::update('pbk','parksms',array(
-                'Name'  =>$this->input->post('Name'),
-                'Number' => $this->input->post('Number'),
-                'GroupID' => $this->input->post('GroupID'),
-                'RwNumber' => $this->input->post('RwNumber'),
-                'Status' => $this->input->post('Status'),
-                'RtNumber' => $this->input->post('RtNumber'),
-                'suspect' => $this->input->post('suspect')
-				),$this->input->post('id'));
-            redirect('pbk');
+            core::update('subcategories','parksms',array(
+				'idcategories' => $this->input->post('idcategories'),
+				'idpbk_groups' => $this->input->post('idpbk_groups'),
+                'code' => $this->input->post('code'),
+				'label' => $this->input->post('label'),
+				),$this->input->post('idsubcategories'),
+            'idsubcategories'
+        );
+            redirect('subcategories');
         }
     }
     
@@ -107,8 +103,8 @@ class Pbk extends Admincore
      */
     function delete($id = '')
     {
-        core::delete('pbk','parksms','ID',$id);
-        redirect('pbk');
+        core::delete('subcategories','parksms','idsubcategories',$id);
+        redirect('subcategories');
     }
     
     

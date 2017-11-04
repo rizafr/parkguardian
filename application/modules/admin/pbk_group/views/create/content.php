@@ -3,7 +3,7 @@
 
 		<?php echo $this->load->view('_layouts/menus');?>   
 		<a href="<?php echo base_url('pbk_group');?>" class='btn'><i class='fa fa-angle-left'></i>
-		Kembali
+			Kembali
 		</a>
 
 		<hr>
@@ -16,20 +16,30 @@
 				<label class='control-label' ><strong>Nama Kategori</strong></label>
 				<div class='controls'>
 					<input type='text' name='Name' value='<?php echo set_value('Name');?>' class='span5' placeholder='Name' required>
-					<?php echo form_error('Name'); ?></div>
+					<?php echo form_error('Name'); ?>
 				</div>
-				<!-- end Name -->
-
-				<!--Submit -->
-				<div class="control-group ">
-					<div class="controls">
-						<a href='<?php echo base_url('pbk_group');?>' class="btn"><i class='fa fa-times'></i> Batalkan</a>
-						<button data-loading-text="Loading ..." type="submit" class="submit btn btn-primary"><i class="fa fa-location-arrow"></i>Simpan</button>
-					</div>
+			</div>
+			<!-- end Name -->
+			<!-- start phone -->
+			<div class='control-group <?php echo form_error('phone') ? 'error' : ''; ?>'>
+				<label class='control-label' ><strong>Telepon</strong></label>
+				<div class='controls'>
+					<input type='text' name='phone' value='<?php echo set_value('phone');?>' class='span5' placeholder='Telepon' required>
+					<?php echo form_error('phone'); ?>
 				</div>
-				<!--end submit -->
+			</div>
+			<!-- end Name -->
 
-			</form>
-			<!--END FORM-->
-		</div>
+			<!--Submit -->
+			<div class="control-group ">
+				<div class="controls">
+					<a href='<?php echo base_url('pbk_group');?>' class="btn"><i class='fa fa-times'></i> Batalkan</a>
+					<button data-loading-text="Loading ..." type="submit" class="submit btn btn-primary"><i class="fa fa-location-arrow"></i>Simpan</button>
+				</div>
+			</div>
+			<!--end submit -->
+
+		</form>
+		<!--END FORM-->
 	</div>
+</div>
