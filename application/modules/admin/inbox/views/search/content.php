@@ -55,7 +55,7 @@ $url      = 'inbox/search';
     <div class='table-responsive margin-table'>
 <table class='table table-condensed'>
 <caption class='text-right'>
-<?php $num_rows = core::get_search('inbox','gammu',$this->input->get('search'),$this->input->get('search_by'))->num_rows();?>
+<?php $num_rows = core::get_search('inbox','parksms',$this->input->get('search'),$this->input->get('search_by'))->num_rows();?>
 <small>Total data : <u class='text-error'><?php echo $num_rows;?></u>
 		               ( Hasil pencarian berdasarkan <u class='text-error'> <?php echo $this->input->get('search_by');?></u> ) -
 			       <a href='<?php echo base_url('inbox');?>'>Back to all</a></small>
@@ -72,7 +72,7 @@ $url      = 'inbox/search';
      <?php if($num_rows == 0){ ?> 
     <tr><td colspan='4'>No data result ..</td></tr>
     <?php } ?>
-<?php foreach(core::get_search_pagination('inbox','gammu',$this->input->get('search'),$this->input->get('search_by'),$per_page,$url)->result() as $row): { ?><tr>
+<?php foreach(core::get_search_pagination('inbox','parksms',$this->input->get('search'),$this->input->get('search_by'),$per_page,$url)->result() as $row): { ?><tr>
 <td><?php echo $i;?></td>
 	<td><?php echo $row->SenderNumber ;?></td>
 		  <td><?php echo character_limiter($row->TextDecoded,20) ;?></td>

@@ -1,10 +1,10 @@
-<?php $inbox = core::get_all('inbox','gammu');?>
-<?php $inboxUnread = core::get_where('inbox','gammu',array('newComing' => 1));?>
-<?php $sending = core::get_all('sentitems','gammu');?>
-<?php $sendingError = core::get_where('sentitems','gammu',array('status' => 'SendingError'));?>
-<?php $outbox = core::get_all('outbox','gammu');?>
-<?php $phonebook = core::get_all('pbk','gammu');?>
-<?php $group = core::get_all('pbk_groups','gammu');?>
+<?php $inbox = core::get_all('inbox','parksms');?>
+<?php $inboxUnread = core::get_where('inbox','parksms',array('Status' => 3));?>
+<?php $sending = core::get_all('sentitems','parksms');?>
+<?php $sendingError = core::get_where('sentitems','parksms',array('status' => 'SendingError'));?>
+<?php $outbox = core::get_all('outbox','parksms');?>
+<?php $phonebook = core::get_all('pbk','parksms');?>
+<?php $group = core::get_all('pbk_groups','parksms');?>
 
  <div class='box box-left'>
     <ul class="nav nav-list">

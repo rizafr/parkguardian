@@ -56,7 +56,7 @@ $url      = 'pbk_group/search';
     <div class='table-responsive margin-table'>
 <table class='table'>
 <caption class='text-right'>
-<?php $num_rows = core::get_search('pbk_groups','gammu',$this->input->get('search'),$this->input->get('search_by'))->num_rows();?>
+<?php $num_rows = core::get_search('pbk_groups','parksms',$this->input->get('search'),$this->input->get('search_by'))->num_rows();?>
 <small>Total data : <u class='text-error'><?php echo $num_rows;?></u>
 		               ( Hasil pencarian berdasarkan <u class='text-error'> <?php echo $this->input->get('search_by');?></u> ) -
 			       <a href='<?php echo base_url('pbk_group');?>'>Back to all</a></small>
@@ -68,7 +68,7 @@ $url      = 'pbk_group/search';
 </tr></thead>
 <tbody>
 <?php $i = $this->input->get('offset') + 1;?>
-<?php foreach(core::get_search_pagination('pbk_groups','gammu',$this->input->get('search'),$this->input->get('search_by'),$per_page,$url)->result() as $row): { ?><tr>
+<?php foreach(core::get_search_pagination('pbk_groups','parksms',$this->input->get('search'),$this->input->get('search_by'),$per_page,$url)->result() as $row): { ?><tr>
 <td><?php echo $i;?></td>
 			<td><?php echo $row->Name ;?></td>
 			<td>

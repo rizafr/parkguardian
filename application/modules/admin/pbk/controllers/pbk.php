@@ -48,7 +48,7 @@ class Pbk extends Admincore
         else
         {
 	  foreach($_POST['x'] as $row) {
-            core::insert('pbk','gammu',array(
+            core::insert('pbk','parksms',array(
 				    'Name'  => $row['name'],
 				    'Number' => $row['phone'],
                     'GroupID' => $row['group'],
@@ -79,7 +79,7 @@ class Pbk extends Admincore
         }
         else
         {
-            core::update('pbk','gammu',array(
+            core::update('pbk','parksms',array(
 				'GroupID' => $this->input->post('GroupID'),
 				'Name' => $this->input->post('Name'),
 				'Number' => $this->input->post('Number'),
@@ -102,7 +102,7 @@ class Pbk extends Admincore
      */
     function delete($id = '')
     {
-        core::delete('pbk','gammu','ID',$id);
+        core::delete('pbk','parksms','ID',$id);
         redirect('pbk');
     }
     

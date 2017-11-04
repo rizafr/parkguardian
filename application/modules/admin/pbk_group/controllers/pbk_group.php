@@ -44,7 +44,7 @@ class Pbk_group extends Admincore
         }
         else
         {
-            core::insert('pbk_groups','gammu',array(
+            core::insert('pbk_groups','parksms',array(
 				'Name' => $this->input->post('Name'),
 				));
             redirect('pbk_group');
@@ -69,7 +69,7 @@ class Pbk_group extends Admincore
         }
         else
         {
-            core::update('pbk_groups','gammu',array(
+            core::update('pbk_groups','parksms',array(
 				'Name' => $this->input->post('Name'),
 				),$this->input->post('id'));
             redirect('pbk_group');
@@ -90,7 +90,7 @@ class Pbk_group extends Admincore
      */
     function delete($id = '')
     {
-        core::delete('pbk_groups','gammu','ID',$id);
+        core::delete('pbk_groups','parksms','ID',$id);
         redirect('pbk_group');
     }
     

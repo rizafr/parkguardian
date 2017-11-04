@@ -53,7 +53,7 @@ $url      = 'admin/search';
     <div class='table-responsive margin-table'>
 <table class='table table-condensed'>
 <caption class='text-right'>
-<?php $num_rows = core::get_search('admin','gammu',$this->input->get('search'),$this->input->get('search_by'))->num_rows();?>
+<?php $num_rows = core::get_search('admin','parksms',$this->input->get('search'),$this->input->get('search_by'))->num_rows();?>
 <small>Total data : <u class='text-error'><?php echo $num_rows;?></u>
 		               ( Hasil pencarian berdasarkan <u class='text-error'> <?php echo $this->input->get('search_by');?></u> ) -
 			       <a href='<?php echo base_url('admin');?>'>Back to all</a></small>
@@ -66,7 +66,7 @@ $url      = 'admin/search';
 </tr></thead>
 <tbody>
 <?php $i = $this->input->get('offset') + 1;?>
-<?php foreach(core::get_search_pagination('admin','gammu',$this->input->get('search'),$this->input->get('search_by'),$per_page,$url)->result() as $row): { ?><tr>
+<?php foreach(core::get_search_pagination('admin','parksms',$this->input->get('search'),$this->input->get('search_by'),$per_page,$url)->result() as $row): { ?><tr>
 <td><?php echo $i;?></td>
 			<td><?php echo $row->username ;?></td>
 			<td><?php echo $row->created ;?></td>

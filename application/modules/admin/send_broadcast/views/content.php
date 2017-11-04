@@ -12,12 +12,12 @@
       <form method='POST' action='' charset='UTF-8'>
 
           <label>Hilangkan centang untuk nomor yang tidak ingin dikirim</label>
-          <hr>  <?php $query = core::get_all('pbk','gammu','Name');?>
+          <hr>  <?php $query = core::get_all('pbk','parksms','Name');?>
           Jumlah Nomor Telepon : <?php echo $query->num_rows();?>
           <div style='width:100%;height:300px;overflow:auto;border:1px solid #CCC;padding:10px 0px 10px 10px ;'>
 
               <?php foreach($query->result() as $row){ ?>
-              <?php $group = core::get_where('pbk_groups','gammu',array('ID' => $row->GroupID));?>
+              <?php $group = core::get_where('pbk_groups','parksms',array('ID' => $row->GroupID));?>
               <?php $groups = $group->row();?>
               <label class="checkbox">
                   <input type='checkbox' name='SendNumber[]' value='<?php echo $row->Number;?>' checked> 

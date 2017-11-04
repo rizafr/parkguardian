@@ -10,7 +10,7 @@
 			<!--START FORM-->
 			<form method='POST' charset='UTF-8' action='<?php echo base_url('pbk_group/update').'/'.$this->uri->segment(3);?>' class="form" >
 
-				<?php $query = core::get_where('pbk_groups','gammu',array('id' => $this->uri->segment(3)),1); ?>
+				<?php $query = core::get_where('pbk_groups','parksms',array('id' => $this->uri->segment(3)),1); ?>
 				<?php $row = $query->row_array();?>
 				<input type='hidden' name='id' value='<?php echo $row['ID'];?>' >
 				<!-- start Name -->
