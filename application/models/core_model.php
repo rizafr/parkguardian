@@ -417,12 +417,28 @@ class Core_model extends CI_model
     function get_code()
     {
         $db = $this->load->database('parksms',TRUE);
-        $db->select('idsubcategories, idpbk_groups,code');
+        $db->select('idsubcategories, idpbk_groups, code, label');
         $db->from('subcategories');
         $query = $db->get();
         if ($query->num_rows() > 0)
         {
            return $query->result_array();
+        } else {
+            return null;
+        }
+    }
+    
+    function check_code($code)
+    {
+        $db = $this->load->database('parksms',TRUE);
+        $where = array('code' => $code);
+        $db->select('idsubcategories', 'code');
+        $db->from('subcategories');
+        $db->where($where);
+        $query = $db->get();
+        if ($query->num_rows() > 0)
+        {
+           return $query->row();
         } else {
             return null;
         }
@@ -437,6 +453,38 @@ class Core_model extends CI_model
         if ($query->num_rows() > 0)
         {
            return $query->result_array();
+        } else {
+            return null;
+        }
+    }
+    
+    function get_picPhone($id)
+    {
+        $db = $this->load->database('parksms',TRUE);
+        $where = array('ID' => $id);
+        $db->select('phone');
+        $db->from('pbk_groups');
+        $db->where($where);
+        $query = $db->get();
+        if ($query->num_rows() > 0)
+        {
+           return $query->row();
+        } else {
+            return null;
+        }
+    }
+    
+    function get_report($id)
+    {
+        $db = $this->load->database('parksms',TRUE);
+        $where = array('ID' => $id);
+        $db->select('*');
+        $db->from('pbk');
+        $db->where($where);
+        $query = $db->get();
+        if ($query->num_rows() > 0)
+        {
+           return $query->row();
         } else {
             return null;
         }
@@ -457,44 +505,6 @@ class Core_model extends CI_model
             return null;
         }
     }
-    //
-    // function sendsms($sender, $message, $modem = '')
-    // {
-    //      $message = str_replace("'", "\'", $message);
-    //      if (strlen($message)<=160)
-    //      {
-    //         $query = "INSERT INTO outbox (DestinationNumber, TextDecoded, SenderID, CreatorID)
-    //                   VALUES ('$message', '$message', '$modem', 'Gammu')";
-    //         $result = mysql_query($query);
-    //      }
-    //      else
-    //      {
-    //         $jmlSMS = ceil(strlen($message)/153);
-    //         $pecah  = str_split($message, 153);
-    //         $query = "SHOW TABLE STATUS LIKE 'outbox'";
-    //         $hasil = mysql_query($query);
-    //         $data  = mysql_fetch_array($hasil);
-    //         $newID = $data['Auto_increment'];
-    //
-    //         $random = rand(1, 255);
-    //         $headerUDH = sprintf("%02s", strtoupper(dechex($random)));
-    //
-    //         for ($i=1; $i<=$jmlSMS; $i++) {
-    //            $udh = "050003".$headerUDH.sprintf("%02s", $jmlSMS).sprintf("%02s", $i);
-    //            $msg = $pecah[$i-1];
-    //            if ($i == 1) {
-    //                 $query = "INSERT INTO outbox (DestinationNumber, UDH, TextDecoded, ID, MultiPart, SenderID, CreatorID)
-    //                 VALUES ('$nohp', '$udh', '$msg', '$newID', 'true', '$modem', 'Gammu')";
-    //            }
-    //            else {
-    //              $query = "INSERT INTO outbox_multipart(UDH, TextDecoded, ID, SequencePosition)
-    //                VALUES ('$udh', '$msg', '$newID', '$i')";
-    //            }
-    //            mysql_query($query);
-    //         }
-    //    }
-    //    return 'SMS sedang dikirim...';
-    // }
 
 
     function get_random($tbl,$database,$limit,$offset)
